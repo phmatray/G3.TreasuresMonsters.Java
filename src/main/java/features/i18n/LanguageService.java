@@ -21,27 +21,28 @@ public class LanguageService implements ILanguageService {
 
     private static String getEnglishString(LanguageKey key) {
         return switch (key) {
-            case Level -> "--- Level {0} ---";
-            case ScoreToBeat -> "Score to beat: {0}";
-            case MovePrompt -> "Move (" + Constants.MOVE_LEFT + "/" + Constants.MOVE_DOWN + "/" + Constants.MOVE_RIGHT + "), H for hint, Q to quit: ";
+            case Level -> "--- Level %d ---";
+            case ScoreToBeat -> "Score to beat: %d";
+            case MovePrompt -> String.format("Move (%s/%s/%s), H for hint, Q to quit: ",
+                    Constants.MOVE_LEFT, Constants.MOVE_DOWN, Constants.MOVE_RIGHT);
             case InvalidInput -> "Invalid input.";
             case CannotMoveUp -> "You cannot move up.";
             case CannotMoveLeft -> "You cannot change direction to the left.";
             case CannotMoveRight -> "You cannot change direction to the right.";
             case CannotMoveThere -> "You cannot move there.";
-            case MonsterEncounter -> "You encountered a monster! You lose {0} health points.";
-            case TreasureFound -> "You found a treasure! You gain {0} points.";
+            case MonsterEncounter -> "You encountered a monster! You lose %d health points.";
+            case TreasureFound -> "You found a treasure! You gain %d points.";
             case NoHintAvailable -> "No hints available.";
             case HintUsed -> "You used a hint.";
-            case PerfectPath -> "Perfect path: {0}";
+            case PerfectPath -> "Perfect path: %s";
             case LevelCompleted -> "Level completed!";
-            case YourScore -> "Your score: {0}";
+            case YourScore -> "Your score: %d";
             case BeatScore -> "You beat the score! You gain a hint for the next levels.";
             case DidNotBeatScore -> "You did not beat the score.";
             case GameOver -> "You are dead. Game over!";
             case ThanksForPlaying -> "Thank you for playing!";
-            case HeroStatus -> "Health: {0} / 100 | Score: {1} | Hints: {2}";
-            case LevelEnd -> "Press '" + Constants.MOVE_DOWN + "' to move to the next level.";
+            case HeroStatus -> "Health: %d / 100 | Score: %d | Hints: %d";
+            case LevelEnd -> String.format("Press '%s' to move to the next level.", Constants.MOVE_DOWN);
             case HeroIsDead -> "The hero is already dead.";
             case NoValidPath -> "There is no valid path.";
             default -> key.toString(); // Return key name if not found
@@ -50,27 +51,28 @@ public class LanguageService implements ILanguageService {
 
     private static String getFrenchString(LanguageKey key) {
         return switch (key) {
-            case Level -> "--- Niveau {0} ---";
-            case ScoreToBeat -> "Score à battre : {0}";
-            case MovePrompt -> "Déplacez-vous (" + Constants.MOVE_LEFT + "/" + Constants.MOVE_DOWN + "/" + Constants.MOVE_RIGHT + "), H pour indice, Q pour quitter : ";
+            case Level -> "--- Niveau %d ---";
+            case ScoreToBeat -> "Score à battre : %d";
+            case MovePrompt -> String.format("Déplacez-vous (%s/%s/%s), H pour indice, Q pour quitter : ",
+                    Constants.MOVE_LEFT, Constants.MOVE_DOWN, Constants.MOVE_RIGHT);
             case InvalidInput -> "Entrée invalide.";
             case CannotMoveUp -> "Impossible de remonter.";
             case CannotMoveLeft -> "Vous ne pouvez pas changer de direction vers la gauche.";
             case CannotMoveRight -> "Vous ne pouvez pas changer de direction vers la droite.";
             case CannotMoveThere -> "Vous ne pouvez pas vous déplacer là.";
-            case MonsterEncounter -> "Vous avez rencontré un monstre ! Vous perdez {0} points de vie.";
-            case TreasureFound -> "Vous avez trouvé un trésor ! Vous gagnez {0} points.";
+            case MonsterEncounter -> "Vous avez rencontré un monstre ! Vous perdez %d points de vie.";
+            case TreasureFound -> "Vous avez trouvé un trésor ! Vous gagnez %d points.";
             case NoHintAvailable -> "Aucun indice disponible.";
             case HintUsed -> "Vous avez utilisé un indice.";
-            case PerfectPath -> "Chemin parfait : {0}";
+            case PerfectPath -> "Chemin parfait : %s";
             case LevelCompleted -> "Niveau terminé !";
-            case YourScore -> "Votre score : {0}";
+            case YourScore -> "Votre score : %d";
             case BeatScore -> "Vous avez battu le score ! Vous gagnez un indice pour les niveaux suivants.";
             case DidNotBeatScore -> "Vous n'avez pas battu le score.";
             case GameOver -> "Vous êtes mort. Fin du jeu !";
             case ThanksForPlaying -> "Merci d'avoir joué !";
-            case HeroStatus -> "Vie : {0} / 100 | Score : {1} | Indices : {2}";
-            case LevelEnd -> "Appuyez sur '" + Constants.MOVE_DOWN + "' pour passer au niveau suivant.";
+            case HeroStatus -> "Vie : %d / 100 | Score : %d | Indices : %d";
+            case LevelEnd -> String.format("Appuyez sur '%s' pour passer au niveau suivant.", Constants.MOVE_DOWN);
             case HeroIsDead -> "Le héros est déjà mort.";
             case NoValidPath -> "Il n'y a pas de chemin valide.";
             default -> key.toString(); // Return key name if not found
