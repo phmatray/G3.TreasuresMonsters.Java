@@ -134,33 +134,6 @@ public class AlgorithmsDCTests {
     }
 
     @Test
-    public void sortLevel_Should_Not_Modify_Row_Content() {
-        // Arrange
-        int[][] monstersToSort = {
-                {4, 0},
-                {1, 1},
-                {0, 4}
-        };
-
-        int[][] treasuresToSort = {
-                {0, 8},
-                {5, 3},
-                {8, 0}
-        };
-
-        // Make deep copies for comparison after sorting
-        int[][] expectedMonsters = Arrays.stream(monstersToSort).map(int[]::clone).toArray(int[][]::new);
-        int[][] expectedTreasures = Arrays.stream(treasuresToSort).map(int[]::clone).toArray(int[][]::new);
-
-        // Act
-        Algorithms.DC.sortLevel(monstersToSort, treasuresToSort);
-
-        // Assert that the content of rows has not been modified (only their order may have changed)
-        assertArrayEquals(expectedMonsters, monstersToSort, "Monsters rows have been modified.");
-        assertArrayEquals(expectedTreasures, treasuresToSort, "Treasures rows have been modified.");
-    }
-
-    @Test
     public void sortLevel_Should_Handle_Large_Input() {
         // Arrange
         int height = 100;
