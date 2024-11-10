@@ -210,56 +210,72 @@ public interface Algorithms {
         }
 
         /* --- Utility functions for GS --- */
-        private static HeroState findBestMove(State state, HeroState hero, int remainingDepth) {
-            int bestValue = 0;
-            HeroState bestHeroState = null;
-
-            for (String move : Constants.getMoves()) {
-                if (isInvalidMove(hero.moveConstraint(), move)) continue;
-
-                PositionResult positionResult = getNewPositionAndConstraint(hero.x(), hero.y(), hero.moveConstraint(), move);
-
-                if (isInvalidPosition(state, positionResult)) continue;
-
-                HeroState newHeroState = getUpdatedState(state, hero, positionResult.x(), positionResult.y(), positionResult.moveConstraint());
-
-                if (newHeroState.health() <= 0) continue;
-
-                int value = evaluatePosition(state, newHeroState, remainingDepth - 1);
-
-                if (value > bestValue) {
-                    bestValue = value;
-                    bestHeroState = newHeroState;
-                }
-            }
-
-            return bestHeroState;
+        @FunctionalInterface
+        interface MoveEvaluator {
+            void evaluate(HeroState hero, int depth);
         }
 
-        private static int evaluatePosition(State state, HeroState hero, int depth) {
-            if (depth == 0 || hero.health() <= 0 || hero.y() >= state.getDungeonHeight()) {
+        private static void iteratePossibleMoves(State state, HeroState hero, int depth, MoveEvaluator evaluator) {
+            for (String move : Constants.getMoves()) {
+                if (isInvalidMove(hero.moveConstraint(), move)) {
+                    continue;
+                }
+
+                PositionResult positionResult = getNewPositionAndConstraint(
+                        hero.x(),
+                        hero.y(),
+                        hero.moveConstraint(),
+                        move);
+
+                if (isInvalidPosition(state, positionResult)) {
+                    continue;
+                }
+
+                HeroState newHeroState = getUpdatedState(
+                        state,
+                        hero,
+                        positionResult.x(),
+                        positionResult.y(),
+                        positionResult.moveConstraint());
+
+                if (newHeroState.health() <= 0) {
+                    continue;
+                }
+
+                evaluator.evaluate(newHeroState, depth);
+            }
+        }
+
+        private static HeroState findBestMove(State state, HeroState hero, int remainingDepth) {
+            int[] bestValue = { 0 };
+            HeroState[] bestHeroState = { null };
+
+            iteratePossibleMoves(state, hero, remainingDepth, (newHeroState, depth) -> {
+                int value = evaluatePosition(state, newHeroState, depth - 1);
+                if (value > bestValue[0]) {
+                    bestValue[0] = value;
+                    bestHeroState[0] = newHeroState;
+                }
+            });
+
+            return bestHeroState[0];
+        }
+
+        private static int evaluatePosition(State state, HeroState hero, int remainingDepth) {
+            if (remainingDepth == 0 || hero.health() <= 0 || hero.y() >= state.getDungeonHeight()) {
                 return hero.health() <= 0 ? 0 : hero.score();
             }
 
-            int maxValue = hero.score();
+            int[] maxValue = { hero.score() };
 
-            for (String move : Constants.getMoves()) {
-                if (isInvalidMove(hero.moveConstraint(), move)) continue;
-
-                PositionResult positionResult = getNewPositionAndConstraint(hero.x(), hero.y(), hero.moveConstraint(), move);
-
-                if (isInvalidPosition(state, positionResult)) continue;
-
-                HeroState newHeroState = getUpdatedState(state, hero, positionResult.x(), positionResult.y(), positionResult.moveConstraint());
-
-                if (newHeroState.health() <= 0) continue;
-
+            iteratePossibleMoves(state, hero, remainingDepth, (newHeroState, depth) -> {
                 int value = evaluatePosition(state, newHeroState, depth - 1);
+                if (value > maxValue[0]) {
+                    maxValue[0] = value;
+                }
+            });
 
-                if (value > maxValue) maxValue = value;
-            }
-
-            return maxValue;
+            return maxValue[0];
         }
     }
 
