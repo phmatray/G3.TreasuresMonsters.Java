@@ -38,19 +38,24 @@ public class GameEngine {
             }
 
             output.displayMessage(LanguageKey.MovePrompt);
-            String inputKey = input.getInput();
-            handleInput(inputKey);
+            try {
+                int inputKey = input.readKey();
+                System.out.println(inputKey);
+                handleInput(inputKey);
+            } catch (Exception e) {
+                // Ignore exceptions
+            }
         }
     }
 
-    private void handleInput(String inputKey) {
+    private void handleInput(int inputKey) {
         switch (inputKey) {
-//            case Constants.MOVE_UP -> handleMoveUp();
-            case Constants.MOVE_DOWN -> handleMoveDown();
-            case Constants.MOVE_LEFT -> handleMoveLeft();
-            case Constants.MOVE_RIGHT -> handleMoveRight();
-            case "H" -> handleShowHint();
-            case "Q" -> handleQuitGame();
+            case IGameInput.ARROW_UP -> handleMoveUp();
+            case IGameInput.ARROW_DOWN -> handleMoveDown();
+            case IGameInput.ARROW_LEFT -> handleMoveLeft();
+            case IGameInput.ARROW_RIGHT -> handleMoveRight();
+            case 'H' -> handleShowHint();
+            case 'Q' -> handleQuitGame();
             default -> output.addStatusMessage(LanguageKey.InvalidInput);
         }
     }

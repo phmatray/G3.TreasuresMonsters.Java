@@ -28,9 +28,10 @@ public class Constants {
     public static final String WALL_CORNER_BOTTOM_LEFT = "╚";
     public static final String WALL_CORNER_BOTTOM_RIGHT = "╝";
 
-    public static final String MOVE_DOWN = "↓";
-    public static final String MOVE_LEFT = "←";
-    public static final String MOVE_RIGHT = "→";
+    public static final String MOVE_UP = "w";
+    public static final String MOVE_DOWN = "s";
+    public static final String MOVE_LEFT = "a";
+    public static final String MOVE_RIGHT = "d";
 
     public static String getHeroEmoji(boolean isAlive) {
         return isAlive ? HERO_ALIVE : HERO_DEAD;

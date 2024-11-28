@@ -7,14 +7,14 @@ import models.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConsoleGameOutput implements IGameOutput {
+public class GameOutputConsole implements IGameOutput {
     private final ILanguageService language;
     private final List<String> statusMessages = new ArrayList<>();
     private final List<String> contextMessages = new ArrayList<>();
     private final List<String> dungeonRows = new ArrayList<>();
     private State currentState;
 
-    public ConsoleGameOutput(ILanguageService language) {
+    public GameOutputConsole(ILanguageService language) {
         this.language = language;
     }
 

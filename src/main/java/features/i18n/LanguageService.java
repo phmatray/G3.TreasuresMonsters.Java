@@ -45,7 +45,6 @@ public class LanguageService implements ILanguageService {
             case LevelEnd -> String.format("Press '%s' to move to the next level.", Constants.MOVE_DOWN);
             case HeroIsDead -> "The hero is already dead.";
             case NoValidPath -> "There is no valid path.";
-            default -> key.toString(); // Return key name if not found
         };
     }
 
@@ -75,7 +74,6 @@ public class LanguageService implements ILanguageService {
             case LevelEnd -> String.format("Appuyez sur '%s' pour passer au niveau suivant.", Constants.MOVE_DOWN);
             case HeroIsDead -> "Le héros est déjà mort.";
             case NoValidPath -> "Il n'y a pas de chemin valide.";
-            default -> key.toString(); // Return key name if not found
         };
     }
 }

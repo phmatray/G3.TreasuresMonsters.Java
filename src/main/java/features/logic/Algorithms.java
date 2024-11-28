@@ -16,8 +16,8 @@ public interface Algorithms {
     static void main(String[] args) {
         // Manual dependency injection setup
         ILanguageService languageService = new LanguageService();
-        IGameInput gameInput = new ConsoleGameInput();
-        IGameOutput gameOutput = new ConsoleGameOutput(languageService);
+        IGameInput gameInput = new GameInputConsole();
+        IGameOutput gameOutput = new GameOutputConsole(languageService);
 
         GameEngine gameEngine = new GameEngine(gameInput, gameOutput);
 
