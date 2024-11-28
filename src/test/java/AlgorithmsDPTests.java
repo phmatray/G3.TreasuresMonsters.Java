@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.Set;
 
+import static models.Constants.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -22,7 +23,7 @@ public class AlgorithmsDPTests {
         String path = Algorithms.DP.perfectSolution(state);
 
         // Assert
-        assertEquals("↓", path, "The path should be one step down.");
+        assertEquals(MOVE_DOWN, path, "The path should be one step down.");
     }
 
     @Test
@@ -46,7 +47,8 @@ public class AlgorithmsDPTests {
         String path = Algorithms.DP.perfectSolution(state);
 
         // Assert
-        assertEquals("↓↓↓", path, "The path should be three steps down.");
+        var expectedPath = MOVE_DOWN + MOVE_DOWN + MOVE_DOWN;
+        assertEquals(expectedPath, path, "The path should be three steps down.");
     }
 
     @Test
@@ -72,7 +74,8 @@ public class AlgorithmsDPTests {
         String path = Algorithms.DP.perfectSolution(state);
 
         // Assert
-        assertEquals("↓↓↓↓", path, "The path should be four steps down.");
+        var expectedPath = MOVE_DOWN + MOVE_DOWN + MOVE_DOWN + MOVE_DOWN;
+        assertEquals(expectedPath, path, "The path should be four steps down.");
     }
 
     @Test
@@ -98,7 +101,8 @@ public class AlgorithmsDPTests {
         String path = Algorithms.DP.perfectSolution(state);
 
         // Assert
-        assertEquals("↓↓↓↓", path, "The path should be four steps down.");
+        var expectedPath = MOVE_DOWN + MOVE_DOWN + MOVE_DOWN + MOVE_DOWN;
+        assertEquals(expectedPath, path, "The path should be four steps down.");
     }
 
     @Test
@@ -146,7 +150,8 @@ public class AlgorithmsDPTests {
         String path = Algorithms.DP.perfectSolution(state);
 
         // Assert
-        assertEquals("→↓↓↓", path, "The path should move right to collect the treasure.");
+        var expectedPath = MOVE_RIGHT + MOVE_DOWN + MOVE_DOWN + MOVE_DOWN;
+        assertEquals(expectedPath, path, "The path should move right to collect the treasure.");
     }
 
     @Test
@@ -172,7 +177,8 @@ public class AlgorithmsDPTests {
         String path = Algorithms.DP.perfectSolution(state);
 
         // Assert
-        assertEquals("↓→↓→↓↓", path, "The path should collect the maximum treasure while avoiding monsters.");
+        var expectedPath = MOVE_DOWN + MOVE_RIGHT + MOVE_DOWN + MOVE_RIGHT + MOVE_DOWN + MOVE_DOWN;
+        assertEquals(expectedPath, path, "The path should collect the maximum treasure while avoiding monsters.");
     }
 
     @Test
@@ -211,7 +217,8 @@ public class AlgorithmsDPTests {
         String path = Algorithms.DP.perfectSolution(state);
 
         // Assert
-        assertEquals("→↓↓↓", path, "Hero should avoid the right path with the high-strength monster.");
+        var expectedPath = MOVE_RIGHT + MOVE_DOWN + MOVE_DOWN + MOVE_DOWN;
+        assertEquals(expectedPath, path, "Hero should avoid the right path with the high-strength monster.");
     }
 
     @Test
@@ -234,8 +241,8 @@ public class AlgorithmsDPTests {
 
         // Assert
         Set<String> possiblePaths = new HashSet<>();
-        possiblePaths.add("←↓↓");
-        possiblePaths.add("→↓↓");
+        possiblePaths.add(MOVE_LEFT + MOVE_DOWN + MOVE_DOWN);
+        possiblePaths.add(MOVE_RIGHT + MOVE_DOWN + MOVE_DOWN);
 
         assertTrue(possiblePaths.contains(path), "Hero should take any path with maximum total score.");
     }
@@ -278,6 +285,9 @@ public class AlgorithmsDPTests {
         String path = Algorithms.DP.perfectSolution(state);
 
         // Assert
-        assertEquals("↓↓→↓↓↓↓→↓←↓←←←↓←↓↓", path, "The path should collect the maximum treasure while avoiding monsters.");
+        var expectedPath = MOVE_DOWN + MOVE_DOWN + MOVE_RIGHT + MOVE_DOWN + MOVE_DOWN + MOVE_DOWN
+                + MOVE_DOWN + MOVE_RIGHT + MOVE_DOWN + MOVE_LEFT + MOVE_DOWN + MOVE_LEFT + MOVE_LEFT
+                + MOVE_LEFT + MOVE_DOWN + MOVE_LEFT + MOVE_DOWN + MOVE_DOWN;
+        assertEquals(expectedPath, path, "The path should collect the maximum treasure while avoiding monsters.");
     }
 }
