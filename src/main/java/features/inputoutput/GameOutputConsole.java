@@ -108,6 +108,11 @@ public class GameOutputConsole implements IGameOutput {
     }
 
     @Override
+    public boolean askRestartGame() {
+        return false;
+    }
+
+    @Override
     public void displayMessage(LanguageKey key, Object... args) {
         System.out.println(getMessage(key, args));
     }

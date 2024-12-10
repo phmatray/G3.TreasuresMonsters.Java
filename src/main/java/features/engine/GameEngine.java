@@ -17,6 +17,9 @@ public class GameEngine {
 
     public void startNewGame() {
         initializeState();
+
+        output.displayMessage(LanguageKey.MovePrompt);
+
         startNewLevel();
     }
 
@@ -37,7 +40,6 @@ public class GameEngine {
                 handleGameOver();
             }
 
-            output.displayMessage(LanguageKey.MovePrompt);
             try {
                 int inputKey = input.readKey();
                 System.out.println(inputKey);
@@ -149,7 +151,13 @@ public class GameEngine {
     private void handleGameOver() {
         output.addContextMessage(LanguageKey.GameOver);
         output.displayScreen(true);
-        System.exit(0);
+
+        boolean wantsToRestart = output.askRestartGame();
+        if (wantsToRestart) {
+            startNewGame();
+        } else {
+            System.exit(0); // or handle quitting gracefully without immediate exit if desired
+        }
     }
 
     private void endLevel() {

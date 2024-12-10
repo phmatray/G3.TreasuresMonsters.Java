@@ -32,7 +32,7 @@ public class GameOutputGUI extends JFrame implements IGameOutput {
 
         // Status panel
         statusTextArea = createTextArea(4);
-        add(createScrollPane(statusTextArea, new Dimension(800, 100)), BorderLayout.NORTH);
+        add(createScrollPane(statusTextArea, new Dimension(800, 120)), BorderLayout.NORTH);
 
         // Dungeon panel
         dungeonPanel = new JPanel(new GridBagLayout());
@@ -157,6 +157,22 @@ public class GameOutputGUI extends JFrame implements IGameOutput {
         String message = getMessage(key, args);
         JOptionPane.showMessageDialog(this, message);
         SwingUtilities.invokeLater(() -> requestFocusInWindow());
+    }
+
+    @Override
+    public boolean askRestartGame() {
+        int choice = JOptionPane.showOptionDialog(
+                this,
+                "You have died. Would you like to restart the game?",
+                "Game Over",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                new Object[]{"Restart", "Quit"},
+                "Quit"
+        );
+        SwingUtilities.invokeLater(() -> requestFocusInWindow());
+        return (choice == JOptionPane.YES_OPTION);
     }
 
     private String getMessage(LanguageKey key, Object... args) {

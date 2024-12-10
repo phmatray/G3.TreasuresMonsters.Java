@@ -9,4 +9,5 @@ public interface IGameOutput {
     void displayMessage(LanguageKey key, Object... args);
     void addStatusMessage(LanguageKey key, Object... args);
     void addContextMessage(LanguageKey key, Object... args);
+    boolean askRestartGame();
 }
