@@ -1,1 +1,53 @@
-{"$schema":"https://docs.renovatebot.com/renovate-schema.json","extends":["config:recommended"],"platformAutomerge":true,"packageRules":[{"matchUpdateTypes":["minor","patch"],"automerge":true}]}
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "baseBranchPatterns": [
+    "dev"
+  ],
+  "schedule": [
+    "before 9am on Saturday"
+  ],
+  "timezone": "Europe/Brussels",
+  "labels": [
+    "dependencies",
+    "renovate"
+  ],
+  "packageRules": [
+    {
+      "description": "Automerge minor and patch updates",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Group all Maven/Gradle minor/patch updates together",
+      "matchManagers": [
+        "maven",
+        "gradle"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "Java minor/patch updates"
+    },
+    {
+      "description": "Group all Maven/Gradle major updates together",
+      "matchManagers": [
+        "maven",
+        "gradle"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "groupName": "Java major updates",
+      "dependencyDashboardApproval": true
+    }
+  ],
+  "platformAutomerge": true
+}
