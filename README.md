@@ -15,6 +15,18 @@
 [![Last commit](https://img.shields.io/github/last-commit/phmatray/G3.TreasuresMonsters.Java)](https://github.com/phmatray/G3.TreasuresMonsters.Java/commits)
 <!-- portfolio-badges:end -->
 
+<!-- portfolio-toc:start -->
+
+## Table of Contents
+
+- [Roadmap](#roadmap)
+- [Tech Stack](#tech-stack)
+- [Contributing](#contributing)
+- [License](#license)
+
+<!-- portfolio-toc:end -->
+
+
 ---
 
 <!-- portfolio-roadmap:start -->
