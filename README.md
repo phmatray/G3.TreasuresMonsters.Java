@@ -25,6 +25,14 @@ Planned work and known limitations are tracked in the [open issues](https://gith
 
 <!-- portfolio-roadmap:end -->
 
+<!-- portfolio-techstack:start -->
+
+## Tech Stack
+
+- **Java**
+
+<!-- portfolio-techstack:end -->
+
 <!-- portfolio-sections:start -->
 
 ## Contributing
