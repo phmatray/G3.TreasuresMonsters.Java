@@ -17,6 +17,14 @@
 
 ---
 
+<!-- portfolio-roadmap:start -->
+
+## Roadmap
+
+Planned work and known limitations are tracked in the [open issues](https://github.com/phmatray/G3.TreasuresMonsters.Java/issues). Contributions toward them are welcome.
+
+<!-- portfolio-roadmap:end -->
+
 <!-- portfolio-sections:start -->
 
 ## Contributing
