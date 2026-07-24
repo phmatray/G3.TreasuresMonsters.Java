@@ -8,6 +8,7 @@
 ![Top language](https://img.shields.io/github/languages/top/phmatray/G3.TreasuresMonsters.Java)
 [![Stars](https://img.shields.io/github/stars/phmatray/G3.TreasuresMonsters.Java?style=social)](https://github.com/phmatray/G3.TreasuresMonsters.Java/stargazers)
 [![Forks](https://img.shields.io/github/forks/phmatray/G3.TreasuresMonsters.Java?style=social)](https://github.com/phmatray/G3.TreasuresMonsters.Java/network/members)
+[![License](https://img.shields.io/github/license/phmatray/G3.TreasuresMonsters.Java)](https://github.com/phmatray/G3.TreasuresMonsters.Java/blob/HEAD/LICENSE)
 
 <!-- Activity -->
 [![Issues](https://img.shields.io/github/issues/phmatray/G3.TreasuresMonsters.Java)](https://github.com/phmatray/G3.TreasuresMonsters.Java/issues)
